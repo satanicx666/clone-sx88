@@ -1,69 +1,99 @@
-import Image from "next/image";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="bg-[#1a1d24] min-h-screen font-sans text-white">
+      <Header />
+      
+      <main className="max-w-screen-xl mx-auto px-4 py-6">
+        {/* Hero Slider Area */}
+        <section className="mb-6 relative aspect-[1859/612] w-full bg-[#22262e] rounded-lg overflow-hidden border border-[#303641]">
+          <div className="absolute inset-0 flex items-center justify-center text-gray-500">
+            {/* Banner image would go here */}
+            <div className="text-center">
+              <span className="block text-4xl font-bold text-blue-500/50">HERO BANNER AREA</span>
+              <span className="text-sm opacity-50">1859 x 612 pixels</span>
+            </div>
+          </div>
+          {/* Slider Dots */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            {[1, 2, 3, 4].map(i => <div key={i} className={`w-2 h-2 rounded-full ${i === 1 ? 'bg-blue-500' : 'bg-gray-600'}`}></div>)}
+          </div>
+        </section>
+
+        {/* Game Category Navigation (Mobile/Visual) */}
+        <div className="grid grid-cols-4 md:grid-cols-9 gap-2 mb-8">
+          {[
+            { name: "Slots", icon: "🎰" },
+            { name: "Sports", icon: "⚽" },
+            { name: "Casino", icon: "🃏" },
+            { name: "Poker", icon: "♠️" },
+            { name: "Togel", icon: "🎲" },
+            { name: "Cockfight", icon: "🐓" },
+            { name: "Fish", icon: "🎣" },
+            { name: "E-Games", icon: "🎮" },
+            { name: "Live", icon: "📺" }
+          ].map((cat, i) => (
+            <div key={i} className="flex flex-col items-center justify-center p-3 bg-[#22262e] rounded-lg border border-[#303641] hover:border-blue-500 transition cursor-pointer group">
+              <span className="text-2xl mb-1 group-hover:scale-110 transition">{cat.icon}</span>
+              <span className="text-[10px] font-bold uppercase text-[#9FADBC]">{cat.name}</span>
+            </div>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Top Winners / Jackpots */}
+        <div className="bg-[#22262e] rounded-lg border border-[#303641] p-4 mb-8 flex items-center gap-6 overflow-hidden">
+          <div className="flex-shrink-0 flex items-center gap-2 border-r border-[#303641] pr-6">
+            <span className="text-yellow-500 text-xl">🏆</span>
+            <span className="font-bold text-[12px] uppercase">Top Winners</span>
+          </div>
+          <div className="flex-grow flex items-center gap-10 animate-marquee whitespace-nowrap">
+             <div className="flex items-center gap-2">
+                <span className="text-blue-400">user_***</span>
+                <span className="text-gray-500">menang</span>
+                <span className="text-green-500 font-bold">IDR 5,420,000</span>
+             </div>
+             <div className="flex items-center gap-2">
+                <span className="text-blue-400">king_***</span>
+                <span className="text-gray-500">menang</span>
+                <span className="text-green-500 font-bold">IDR 12,800,000</span>
+             </div>
+             <div className="flex items-center gap-2">
+                <span className="text-blue-400">win***</span>
+                <span className="text-gray-500">menang</span>
+                <span className="text-green-500 font-bold">IDR 1,200,500</span>
+             </div>
+          </div>
+        </div>
+
+        {/* Game Providers Section */}
+        <div className="mb-8">
+           <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-bold uppercase tracking-wide flex items-center gap-2">
+                 <span className="w-1 h-6 bg-blue-500 rounded"></span>
+                 Provider Slots Terpopuler
+              </h2>
+              <span className="text-xs text-blue-400 cursor-pointer">Lihat Semua</span>
+           </div>
+           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+              {[
+                "Pragmatic Play", "PG Soft", "CQ9", "Microgaming", "Joker", "Spadegaming",
+                "Jili", "Fastspin", "Habanero", "Playtech", "Hacksaw", "Nolimit City"
+              ].map((provider, i) => (
+                <div key={i} className="aspect-[4/3] bg-[#22262e] rounded-lg border border-[#303641] hover:border-blue-500 transition flex flex-col items-center justify-center p-4 relative group overflow-hidden">
+                   <div className="w-full h-full bg-[#1a1d24] rounded flex items-center justify-center mb-2">
+                      <span className="text-[10px] text-gray-600 font-bold uppercase">{provider} LOGO</span>
+                   </div>
+                   <span className="text-[11px] font-bold text-[#B6C2CF] text-center">{provider}</span>
+                   <div className="absolute inset-0 bg-blue-600/10 opacity-0 group-hover:opacity-100 transition"></div>
+                </div>
+              ))}
+           </div>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }
