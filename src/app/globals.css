@@ -1,26 +1,249 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;600;700&display=swap");
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* === DS TOKENS (EXACT FROM WEBSITE) === */
+  --ds-text: #b6c2cf;
+  --ds-text-disabled: #bfdbf847;
+  --ds-text-inverse: #1d2125;
+  --ds-text-selected: #579dff;
+  --ds-text-brand: #579dff;
+  --ds-text-danger: #fd9891;
+  --ds-text-warning: #f5cd47;
+  --ds-text-warning-inverse: #1d2125;
+  --ds-text-success: #7ee2b8;
+  --ds-text-discovery: #b8acf6;
+  --ds-text-information: #85b8ff;
+  --ds-text-subtlest: #8c9bab;
+  --ds-text-subtle: #9fadbc;
+  --ds-icon: #9fadbc;
+  --ds-icon-disabled: #bfdbf847;
+  --ds-icon-inverse: #1d2125;
+  --ds-icon-selected: #579dff;
+  --ds-icon-brand: #579dff;
+  --ds-icon-danger: #f15b50;
+  --ds-icon-warning: #f5cd47;
+  --ds-icon-warning-inverse: #1d2125;
+  --ds-icon-success: #2abb7f;
+  --ds-icon-discovery: #8f7ee7;
+  --ds-icon-information: #388bff;
+  --ds-icon-subtle: #8c9bab;
+  --ds-border: #a6c5e229;
+  --ds-border-disabled: #a1bdd914;
+  --ds-border-focused: #85b8ff;
+  --ds-border-input: #738496;
+  --ds-border-inverse: #161a1d;
+  --ds-border-selected: #579dff;
+  --ds-border-brand: #579dff;
+  --ds-border-danger: #f15b50;
+  --ds-border-warning: #cf9f02;
+  --ds-border-success: #2abb7f;
+  --ds-border-discovery: #8f7ee7;
+  --ds-border-information: #388bff;
+  --ds-border-bold: #738496;
+  --ds-background-disabled: #bcd6f00a;
+  --ds-background-input: #22272b;
+  --ds-background-input-hovered: #282e33;
+  --ds-background-input-pressed: #22272b;
+  --ds-background-inverse-subtle: #ffffff29;
+  --ds-background-inverse-subtle-hovered: #ffffff3d;
+  --ds-background-inverse-subtle-pressed: #ffffff52;
+  --ds-background-neutral: #a1bdd914;
+  --ds-background-neutral-hovered: #a6c5e229;
+  --ds-background-neutral-pressed: #bfdbf847;
+  --ds-background-neutral-subtle: #0000;
+  --ds-background-neutral-subtle-hovered: #a1bdd914;
+  --ds-background-neutral-subtle-pressed: #a6c5e229;
+  --ds-background-neutral-bold: #9fadbc;
+  --ds-background-neutral-bold-hovered: #b6c2cf;
+  --ds-background-neutral-bold-pressed: #c7d1db;
+  --ds-background-selected: #1c2b41;
+  --ds-background-selected-hovered: #09326c;
+  --ds-background-selected-pressed: #05c;
+  --ds-background-selected-bold: #579dff;
+  --ds-background-selected-bold-hovered: #85b8ff;
+  --ds-background-selected-bold-pressed: #cce0ff;
+  --ds-background-brand-subtlest: #1c2b41;
+  --ds-background-brand-subtlest-hovered: #09326c;
+  --ds-background-brand-subtlest-pressed: #05c;
+  --ds-background-brand-bold: #579dff;
+  --ds-background-brand-bold-hovered: #85b8ff;
+  --ds-background-brand-bold-pressed: #cce0ff;
+  --ds-background-brand-boldest: #e9f2ff;
+  --ds-background-brand-boldest-hovered: #cce0ff;
+  --ds-background-brand-boldest-pressed: #85b8ff;
+  --ds-background-danger: #42221f;
+  --ds-background-danger-hovered: #5d1f1a;
+  --ds-background-danger-pressed: #ae2e24;
+  --ds-background-danger-bold: #f87168;
+  --ds-background-danger-bold-hovered: #fd9891;
+  --ds-background-danger-bold-pressed: #ffd5d2;
+  --ds-background-warning: #332e1b;
+  --ds-background-warning-hovered: #533f04;
+  --ds-background-warning-pressed: #7f5f01;
+  --ds-background-warning-bold: #f5cd47;
+  --ds-background-warning-bold-hovered: #e2b203;
+  --ds-background-warning-bold-pressed: #cf9f02;
+  --ds-background-success: #1c3329;
+  --ds-background-success-hovered: #164b35;
+  --ds-background-success-pressed: #216e4e;
+  --ds-background-success-bold: #4bce97;
+  --ds-background-success-bold-hovered: #7ee2b8;
+  --ds-background-success-bold-pressed: #baf3db;
+  --ds-background-discovery: #2b273f;
+  --ds-background-discovery-hovered: #352c63;
+  --ds-background-discovery-pressed: #5e4db2;
+  --ds-background-discovery-bold: #9f8fef;
+  --ds-background-discovery-bold-hovered: #b8acf6;
+  --ds-background-discovery-bold-pressed: #dfd8fd;
+  --ds-background-information: #1c2b41;
+  --ds-background-information-hovered: #09326c;
+  --ds-background-information-pressed: #05c;
+  --ds-background-information-bold: #579dff;
+  --ds-background-information-bold-hovered: #85b8ff;
+  --ds-background-information-bold-pressed: #cce0ff;
+  --ds-blanket: #10121499;
+  --ds-blanket-selected: #1d7afc14;
+  --ds-blanket-danger: #e3493514;
+  --ds-interaction-hovered: #fff3;
+  --ds-interaction-pressed: #ffffff5c;
+  --ds-skeleton: #a1bdd914;
+  --ds-skeleton-subtle: #bcd6f00a;
+  --ds-surface: #1d2125;
+  --ds-surface-hovered: #22272b;
+  --ds-surface-pressed: #282e33;
+  --ds-surface-overlay: #0f1926;
+  --ds-surface-overlay-hovered: #2c333a;
+  --ds-surface-overlay-pressed: #38414a;
+  --ds-surface-raised: #22272b;
+  --ds-surface-raised-hovered: #282e33;
+  --ds-surface-raised-pressed: #2c333a;
+  --ds-surface-sunken: #161a1d;
+  --ds-shadow-overflow: 0px 0px 12px #0304048f, 0px 0px 1px #03040480;
+  --ds-shadow-overflow-perimeter: #03040480;
+  --ds-shadow-overflow-spread: #0304048f;
+  --ds-shadow-overlay: 0px 0px 0px 1px #39424a, 0px 8px 12px #0304045c, 0px 0px 1px 1px #03040480;
+  --ds-shadow-raised: 0px 0px 0px 1px #0000, 0px 1px 1px #03040480, 0px 0px 1px #03040480;
+  --ds-opacity-disabled: 0.4;
+  --ds-opacity-loading: 0.2;
+  --ds-UNSAFE-transparent: transparent;
+  --ds-elevation-surface-current: #1d2125;
+
+  /* === TW CONFIG === */
+  --font-family: "Roboto Condensed", sans-serif;
+  --animate-duration: 1s;
+  --animate-delay: 1s;
+  --animate-repeat: 1;
+  --animation-timing-function: ease;
+  --fade-in-translateY: 50px;
+  --slide-in-translateY: 200px;
+  --fade-in-translateX: 50px;
+  --slide-in-br-translateY: 200px;
+  --slide-in-br-translateX: 1000px;
+  --slide-in-tl-translateY: -600px;
+  --slide-in-tl-translateX: -1000px;
+  --current-color: currentColor;
+  --text-input: var(--text-modal);
+  --bg-input: var(--bg-modal);
+  --bg-modal: var(--ds-surface-overlay);
+  --text-onModal: #fff;
+  --bg-brand-heavy-contrast-mix-opacity: var(--bg-brand-heavy-contrast);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ds-text: var(--ds-text);
+  --color-ds-text-disabled: var(--ds-text-disabled);
+  --color-ds-text-inverse: var(--ds-text-inverse);
+  --color-ds-text-selected: var(--ds-text-selected);
+  --color-ds-text-brand: var(--ds-text-brand);
+  --color-ds-text-danger: var(--ds-text-danger);
+  --color-ds-text-warning: var(--ds-text-warning);
+  --color-ds-text-success: var(--ds-text-success);
+  --color-ds-text-discovery: var(--ds-text-discovery);
+  --color-ds-text-information: var(--ds-text-information);
+  --color-ds-text-subtlest: var(--ds-text-subtlest);
+  --color-ds-text-subtle: var(--ds-text-subtle);
+  --color-ds-icon: var(--ds-icon);
+  --color-ds-border: var(--ds-border);
+  --color-ds-border-focused: var(--ds-border-focused);
+  --color-ds-border-selected: var(--ds-border-selected);
+  --color-ds-border-brand: var(--ds-border-brand);
+  --color-ds-border-bold: var(--ds-border-bold);
+  --color-ds-background-disabled: var(--ds-background-disabled);
+  --color-ds-background-input: var(--ds-background-input);
+  --color-ds-background-input-hovered: var(--ds-background-input-hovered);
+  --color-ds-background-neutral-bold: var(--ds-background-neutral-bold);
+  --color-ds-background-selected-bold: var(--ds-background-selected-bold);
+  --color-ds-background-brand-bold: var(--ds-background-brand-bold);
+  --color-ds-background-brand-boldest: var(--ds-background-brand-boldest);
+  --color-ds-background-danger-bold: var(--ds-background-danger-bold);
+  --color-ds-background-warning-bold: var(--ds-background-warning-bold);
+  --color-ds-background-success-bold: var(--ds-background-success-bold);
+  --color-ds-background-discovery-bold: var(--ds-background-discovery-bold);
+  --color-ds-background-information-bold: var(--ds-background-information-bold);
+  --color-ds-surface: var(--ds-surface);
+  --color-ds-surface-hovered: var(--ds-surface-hovered);
+  --color-ds-surface-pressed: var(--ds-surface-pressed);
+  --color-ds-surface-overlay: var(--ds-surface-overlay);
+  --color-ds-surface-raised: var(--ds-surface-raised);
+  --color-ds-surface-sunken: var(--ds-surface-sunken);
+  --color-ds-blanket: var(--ds-blanket);
+  --color-ds-interaction-hovered: var(--ds-interaction-hovered);
+  --color-ds-interaction-pressed: var(--ds-interaction-pressed);
+  --color-ds-elevation-surface: var(--ds-elevation-surface-current);
+  --font-family: var(--font-family);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html, body {
+  background: var(--ds-surface);
+  color: var(--ds-text);
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* === ANIMATIONS FROM ORIGINAL === */
+@keyframes fade-in-bottom {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes fade-in-left {
+  from { transform: translateX(-50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.animate { animation-duration: 1s; animation-timing-function: ease; }
+.animate.fade-in-bottom { animation-name: fade-in-bottom; }
+.animate.fade-in-left { animation-name: fade-in-left; }
+
+/* === FONT CLASSES === */
+.font-roboto-condensed { font-family: "Roboto Condensed", sans-serif; }
+
+/* === UTILITY OVERRIDES === */
+.text-ds-text-subtle { color: var(--ds-text-subtle); }
+.text-ds-text-brand { color: var(--ds-text-brand); }
+.text-ds-text-brand-bold { color: var(--ds-background-brand-bold); }
+.text-white { color: #ffffff; }
+.font-medium { font-weight: 500; }
+.font-bold { font-weight: 700; }
+.bg-ds-surface { background-color: var(--ds-surface); }
+.bg-ds-surface-hovered { background-color: var(--ds-surface-hovered); }
+.bg-ds-surface-raised { background-color: var(--ds-surface-raised); }
+.bg-ds-surface-sunken { background-color: var(--ds-surface-sunken); }
+.bg-ds-background-brand-bold { background-color: var(--ds-background-brand-bold); }
+.bg-ds-background-neutral-bold { background-color: var(--ds-background-neutral-bold); }
+.bg-ds-surface-overlay { background-color: var(--ds-surface-overlay); }
+.rounded { border-radius: 4px; }
+.border { border-width: 1px; }
+.border-ds-border { border-color: var(--ds-border); }
+/* === CUSTOM ANIMATIONS FOR GAME CARDS === */
+.hover\:scale-110:hover { transform: scale(1.1); transition: transform 300ms ease-out; }
+.transition-all { transition: all 300ms ease-out; }
+.duration-300 { transition-duration: 300ms; }
+.ease-out { transition-timing-function: ease-out; }
+.animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }

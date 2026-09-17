@@ -4,81 +4,168 @@ import { useState } from "react";
 
 export default function Header() {
   const [showApk, setShowApk] = useState(true);
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
+
+  const toggleMenu = (id: string) =>
+    setOpenMenu((prev) => (prev === id ? null : id));
 
   return (
-    <header style={{ zIndex: 49 }} className="root relative">
-      {/* Mobile APK Download Bar */}
-      {showApk && (
-        <div className="apkDownload3 px-2 py-1 sm:hidden bg-[#14171d] border-b border-[#22262e] text-xs flex justify-between items-center text-white">
-          <div className="flex items-center gap-2">
-            <button onClick={() => setShowApk(false)} type="button" aria-label="Tutup" className="text-xl">
-              ✕
-            </button>
-            <a href="https://storetn.in/TIKET300/tiket300.apk" className="inline-flex items-center gap-2">
-              <span className="text-green-500 font-bold text-sm">🤖 App TIKET300</span>
-              <span className="bg-green-600 text-white px-2 py-0.5 rounded text-[10px]">Download APK</span>
-            </a>
-          </div>
-        </div>
-      )}
-
-      {/* Main Header Container */}
-      <div className="wrapper headerWrapper w-full fixed lg:relative z-10 border-b border-[#a6c5e229] bg-[#1d2125]">
-        {/* Top Utility */}
-        <div className="max-w-screen-xl mx-auto px-4 py-1 flex justify-between items-center text-[12px] text-[#9fadbc]">
-          <div>Selamat Datang di UGN3F</div>
-          <div className="flex items-center gap-4">
-            <Link href="/support" className="hover:text-white">Pengaduan Member</Link>
-          </div>
-        </div>
-
-        {/* Main Navbar */}
-        <div className="max-w-screen-xl mx-auto px-4 py-2 flex items-center justify-between">
-          <Link href="/" className="flex items-center">
-            <span className="text-2xl font-bold italic text-yellow-500">TIKET</span>
-            <span className="text-3xl font-extrabold text-yellow-600">300</span>
-          </Link>
-
-          {/* Nav with Exact Query Parameters */}
-          <nav className="hidden lg:flex items-center gap-1 text-[13px] font-medium text-[#b6c2cf]">
-            {/* Slots Dropdown */}
-            <div className="relative group" onMouseEnter={() => setActiveMenu('slots')} onMouseLeave={() => setActiveMenu(null)}>
-              <button className="p-3 flex items-center gap-1 hover:text-[#579dff]">
-                Slots ▾
+    <>
+      {/* ============================ */}
+      {/* ORIGINAL: <header> + .wrapper */}
+      {/* ============================ */}
+      <header className="relative">
+        <div className="wrapper headerWrapper w-full fixed lg:relative z-10 border-b border-ds-border pb-1 bg-ds-surface">
+          {/* ---------- MOBILE APK BAR ---------- */}
+          {showApk && (
+            <div
+              data-apk-download=""
+              className="apkDownload3 px-2 py-1 sm:hidden animate fade-in-bottom flex items-center gap-2 bg-ds-surface-sunken"
+            >
+              <button
+                data-apk-download-close=""
+                type="button"
+                aria-label="Tutup"
+                onClick={() => setShowApk(false)}
+                className="text-xl text-ds-text-subtle"
+              >
+                ✕
               </button>
-              {activeMenu === 'slots' && (
-                <div className="absolute top-full left-0 bg-[#22272b] border border-[#a6c5e229] shadow-lg rounded w-48 py-2 z-50 text-xs">
-                  <Link href="/slots" className="px-4 py-2 block hover:bg-[#282e33]">Oleh Penyedia</Link>
-                  <Link href="/all-games?type=all&category=slots" className="px-4 py-2 block hover:bg-[#282e33]">Semua</Link>
-                  <Link href="/all-games?type=Top&category=slots" className="px-4 py-2 block hover:bg-[#282e33]">Populer</Link>
-                  <Link href="/all-games?type=New&category=slots" className="px-4 py-2 block hover:bg-[#282e33]">Baru</Link>
-                  <Link href="/all-games?type=Hold And Win&category=slots" className="px-4 py-2 block hover:bg-[#282e33]">Hold And Win</Link>
-                  <Link href="/all-games?type=Buy Bonus Feature&category=slots" className="px-4 py-2 block hover:bg-[#282e33]">Fitur Beli Bonus</Link>
-                  <Link href="/all-games?type=JP Progressive&category=slots" className="px-4 py-2 block hover:bg-[#282e33]">JP Progressive</Link>
-                </div>
-              )}
+              <a
+                href="https://storetn.in/TIKET300/tiket300.apk"
+                className="inline-flex items-center rounded gap-2 flex-nowrap text-ds-text-brand"
+              >
+                <svg
+                  style={{ color: "#3CE138" }}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1.27em"
+                  height="1.5em"
+                  viewBox="0 0 38 45"
+                  fill="none"
+                >
+                  <path d="M18.9902 15.0406C22.9223 15.0406 26.8554 15.0474 30.7876 15.0319..." />
+                </svg>
+                <span className="text-3xl shrink-0 font-bold">App TIKET300</span>
+              </a>
             </div>
+          )}
 
-            <Link href="/sports" className="p-3 hover:text-[#579dff]">Olahraga</Link>
-            <Link href="/casino" className="p-3 hover:text-[#579dff]">Kasino</Link>
-            <Link href="/poker" className="p-3 hover:text-[#579dff]">P2P</Link>
-            <Link href="/togel" className="p-3 hover:text-[#579dff]">Togel</Link>
-            <Link href="/cockfight" className="p-3 hover:text-[#579dff]">Sabung Ayam</Link>
-            <Link href="/fish" className="p-3 hover:text-[#579dff]">Tembak Ikan</Link>
-          </nav>
+          {/* ---------- TOP UTILITY ---------- */}
+          <div className="max-w-screen-xl mx-auto px-4 flex justify-between items-center text-[12px] text-ds-text-subtle py-1">
+            <div>Selamat Datang di UGN3F</div>
+            <div className="flex items-center gap-4">
+              <Link href="/support">Pengaduan Member</Link>
+              <span>🔔</span>
+              <span>🎧</span>
+            </div>
+          </div>
 
-          {/* Auth Actions */}
-          <div className="flex items-center gap-2">
-            <Link href="/login" className="px-4 py-2 rounded bg-transparent border border-[#738496] text-[#b6c2cf] hover:bg-[#22272b] text-xs font-medium">
-              Masuk
-            </Link>
-            <Link href="/register" className="px-4 py-2 rounded bg-[#579dff] text-[#1d2125] font-bold text-xs hover:bg-[#85b8ff]">
-              Bergabung
-            </Link>
+          {/* ---------- MAIN NAV ---------- */}
+          <div className="max-w-screen-xl mx-auto px-4 py-2 flex items-center justify-between">
+            <a href="/" className="logo flex items-center animate fade-in-left">
+              <img
+                src="https://files.sitestatic.net/ImageFile/2025022717430800000073ec1175dc__CGAMING_NS3__1859x612.png"
+                alt="Logo"
+                className="w-auto h-8"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+
+            <nav className="hidden lg:flex items-center gap-1 text-[13px] font-medium text-ds-text">
+              {/* SLOTSWITH SUBMENU */}
+              <div className="relative">
+                <button
+                  onClick={() => toggleMenu("slots")}
+                  className="p-4 w-full font-medium flex items-center gap-2 hover:text-ds-text-brand"
+                >
+                  Slots
+                </button>
+                {openMenu === "slots" && (
+                  <div className="absolute top-full left-0 bg-ds-surface-raised border border-ds-border rounded shadow-lg min-w-[180px] py-1 z-50">
+                    <a href="/slots" className="px-7 py-3 block hover:bg-ds-surface-hovered">
+                      Oleh Penyedia
+                    </a>
+                    <a href="/all-games?type=all&category=slots" className="px-7 py-3 block hover:bg-ds-surface-hovered">
+                      Semua
+                    </a>
+                    <a href="/all-games?type=Top&category=slots" className="px-7 py-3 block hover:bg-ds-surface-hovered">
+                      Populer
+                    </a>
+                    <a href="/all-games?type=New&category=slots" className="px-7 py-3 block hover:bg-ds-surface-hovered">
+                      Baru
+                    </a>
+                    <a href="/all-games?type=Hold And Win&category=slots" className="px-7 py-3 block hover:bg-ds-surface-hovered">
+                      Hold And Win
+                    </a>
+                    <a href="/all-games?type=Buy Bonus Feature&category=slots" className="px-7 py-3 block hover:bg-ds-surface-hovered">
+                      Fitur Beli Bonus
+                    </a>
+                    <a href="/all-games?type=JP Progressive&category=slots" className="px-7 py-3 block hover:bg-ds-surface-hovered">
+                      JP Progressive
+                    </a>
+                  </div>
+                )}
+              </div>
+
+              <button onClick={() => toggleMenu("sports")} className="p-4 w-full font-medium flex items-center gap-2 hover:text-ds-text-brand">
+                Olahraga
+              </button>
+              <Link href="/casino" className="p-4 flex items-center gap-2 hover:text-ds-text-brand">
+                Kasino
+              </Link>
+              <Link href="/poker" className="p-4 flex items-center gap-2 hover:text-ds-text-brand">
+                P2P
+              </Link>
+              <Link href="/togel" className="p-4 flex items-center gap-2 hover:text-ds-text-brand">
+                Togel
+              </Link>
+              <Link href="/cockfight" className="p-4 flex items-center gap-2 hover:text-ds-text-brand">
+                Sabung Ayam
+              </Link>
+              <Link href="/fish" className="p-4 flex items-center gap-2 hover:text-ds-text-brand">
+                Tembak Ikan
+              </Link>
+            </nav>
+
+            {/* ---------- AUTH ---------- */}
+            <div className="flex items-center gap-2">
+              <Link
+                href="/login"
+                className="px-5 py-3 bg-transparent border border-ds-border-bold text-ds-text font-medium rounded hover:bg-ds-surface-hovered"
+              >
+                Masuk
+              </Link>
+              <Link
+                href="/register"
+                className="px-7 py-3 bg-ds-background-brand-bold text-ds-text-inverse font-bold rounded hover:bg-ds-background-brand-bold-hovered"
+              >
+                Bergabung
+              </Link>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* ---------- MOBILE NAV (ORIGINAL: .headerMainNav) ---------- */}
+      <div className="lg:hidden relative max-w-screen-xl mx-auto px-4 mt-5">
+        <div className="headerMainNav border-y-gradient flex lg:hidden animate fade-in-bottom bg-ds-surface-raised rounded-lg">
+          <div className="grid grid-cols-6 gap-4">
+            {[
+              { label: "Slots", href: "/slots" },
+              { label: "Sports", href: "/sports" },
+              { label: "Casino", href: "/casino" },
+              { label: "P2P", href: "/poker" },
+              { label: "Togel", href: "/togel" },
+              { label: "Sabung", href: "/cockfight" },
+            ].map((item) => (
+              <a key={item.href} href={item.href} className="col-span-1 flex flex-col items-center justify-center p-2 hover:text-ds-text-brand transition">
+                <span className="text-lg">{item.label}</span>
+              </a>
+            ))}
           </div>
         </div>
       </div>
-    </header>
+    </>
   );
 }

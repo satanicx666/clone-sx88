@@ -1,96 +1,137 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+const categoryItems = [
+  { name: "Kasino Langsung", href: "/casino", icon: "🃏" },
+  { name: "Blackjack, Baccarat, Roulette and Poker", href: "/casino", icon: "♠" },
+  { name: "Slots", href: "/slots", icon: "🎰" },
+  { name: "Archer, 3 Kingdom, Dolphin & etc", href: "/slots", icon: "🎯" },
+  { name: "Olahraga", href: "/sports", icon: "⚽" },
+  { name: "Football, Basketball & etc", href: "/sports", icon: "🏀" },
+  { name: "Promosi", href: "/promotions", icon: "🎁" },
+];
+
+const providers = [
+  "Pragmatic Play", "PG Soft", "CQ9", "Microgaming", "Joker", "Spadegaming",
+  "Jili", "Fastspin", "Habanero", "Playtech", "Hacksaw", "Nolimit City",
+  "Pragmatic Play POP", "Wow Gaming", "Prime Sigma Gaming", "Askme Slot",
+  "Habanero", "AdvantPlay", "HacksaW", "Live22", "Nolimit City", "Fachai",
+  "Playstar", "VPlus", "Togel Slot", "Megawin", "5Gaming", "Dragoon Soft",
+  "NextSpin", "Hotdog Gaming", "DST Play", "Relax Gaming", "Skywind", "JDB",
+  "AI Gaming", "Redtiger", "NetEnt", "Playngo", "Booming", "Apollo777", "Ygg",
+  "KA Gaming", "Naga Games", "One Game", "BGaming", "GMW", "UU Slot",
+  "Pegasus", "BTG", "Liteplay", "SBO", "568 Win",
+];
+
 export default function Home() {
   return (
-    <div className="bg-[#1a1d24] min-h-screen font-sans text-white">
+    <div className="bg-ds-surface text-ds-text font-roboto-condensed min-h-screen">
       <Header />
-      
+
       <main className="max-w-screen-xl mx-auto px-4 py-6">
-        {/* Hero Slider Area */}
-        <section className="mb-6 relative aspect-[1859/612] w-full bg-[#22262e] rounded-lg overflow-hidden border border-[#303641]">
-          <div className="absolute inset-0 flex items-center justify-center text-gray-500">
-            {/* Banner image would go here */}
-            <div className="text-center">
-              <span className="block text-4xl font-bold text-blue-500/50">HERO BANNER AREA</span>
-              <span className="text-sm opacity-50">1859 x 612 pixels</span>
+        {/* ============ ORIGINAL: banner-slider / Splide ============ */}
+        <section className="max-w-screen--xs-full mt-5 relative">
+          <div
+            aria-label="SLIDER"
+            className="banner-slider splide relative rounded-xl overflow-hidden is-overflow splide--slide splide--ltr splide--draggable is-active is-initialized"
+            id="splide01"
+          >
+            <div
+              className="splide__track w-full aspect-[1.87826/1] sm:aspect-[3.13043/1] splide__track--slide splide__track--ltr splide__track--draggable"
+              id="splide01-track"
+            >
+              <div
+                className="splide__slide is-active splide__slide--active"
+                data-splide-item=""
+              >
+                <img
+                  src="https://files.sitestatic.net/ImageFile/2025022717430800000073ec1175dc__CGAMING_NS3__1859x612.png"
+                  alt="Banner Utama"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
             </div>
-          </div>
-          {/* Slider Dots */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-            {[1, 2, 3, 4].map(i => <div key={i} className={`w-2 h-2 rounded-full ${i === 1 ? 'bg-blue-500' : 'bg-gray-600'}`}></div>)}
+            <div className="splide__pagination" />
           </div>
         </section>
 
-        {/* Game Category Navigation (Mobile/Visual) */}
-        <div className="grid grid-cols-4 md:grid-cols-9 gap-2 mb-8">
-          {[
-            { name: "Slots", icon: "🎰" },
-            { name: "Sports", icon: "⚽" },
-            { name: "Casino", icon: "🃏" },
-            { name: "Poker", icon: "♠️" },
-            { name: "Togel", icon: "🎲" },
-            { name: "Cockfight", icon: "🐓" },
-            { name: "Fish", icon: "🎣" },
-            { name: "E-Games", icon: "🎮" },
-            { name: "Live", icon: "📺" }
-          ].map((cat, i) => (
-            <div key={i} className="flex flex-col items-center justify-center p-3 bg-[#22262e] rounded-lg border border-[#303641] hover:border-blue-500 transition cursor-pointer group">
-              <span className="text-2xl mb-1 group-hover:scale-110 transition">{cat.icon}</span>
-              <span className="text-[10px] font-bold uppercase text-[#9FADBC]">{cat.name}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Top Winners / Jackpots */}
-        <div className="bg-[#22262e] rounded-lg border border-[#303641] p-4 mb-8 flex items-center gap-6 overflow-hidden">
-          <div className="flex-shrink-0 flex items-center gap-2 border-r border-[#303641] pr-6">
-            <span className="text-yellow-500 text-xl">🏆</span>
-            <span className="font-bold text-[12px] uppercase">Top Winners</span>
-          </div>
-          <div className="flex-grow flex items-center gap-10 animate-marquee whitespace-nowrap">
-             <div className="flex items-center gap-2">
-                <span className="text-blue-400">user_***</span>
-                <span className="text-gray-500">menang</span>
-                <span className="text-green-500 font-bold">IDR 5,420,000</span>
-             </div>
-             <div className="flex items-center gap-2">
-                <span className="text-blue-400">king_***</span>
-                <span className="text-gray-500">menang</span>
-                <span className="text-green-500 font-bold">IDR 12,800,000</span>
-             </div>
-             <div className="flex items-center gap-2">
-                <span className="text-blue-400">win***</span>
-                <span className="text-gray-500">menang</span>
-                <span className="text-green-500 font-bold">IDR 1,200,500</span>
-             </div>
-          </div>
-        </div>
-
-        {/* Game Providers Section */}
-        <div className="mb-8">
-           <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-bold uppercase tracking-wide flex items-center gap-2">
-                 <span className="w-1 h-6 bg-blue-500 rounded"></span>
-                 Provider Slots Terpopuler
-              </h2>
-              <span className="text-xs text-blue-400 cursor-pointer">Lihat Semua</span>
-           </div>
-           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-              {[
-                "Pragmatic Play", "PG Soft", "CQ9", "Microgaming", "Joker", "Spadegaming",
-                "Jili", "Fastspin", "Habanero", "Playtech", "Hacksaw", "Nolimit City"
-              ].map((provider, i) => (
-                <div key={i} className="aspect-[4/3] bg-[#22262e] rounded-lg border border-[#303641] hover:border-blue-500 transition flex flex-col items-center justify-center p-4 relative group overflow-hidden">
-                   <div className="w-full h-full bg-[#1a1d24] rounded flex items-center justify-center mb-2">
-                      <span className="text-[10px] text-gray-600 font-bold uppercase">{provider} LOGO</span>
-                   </div>
-                   <span className="text-[11px] font-bold text-[#B6C2CF] text-center">{provider}</span>
-                   <div className="absolute inset-0 bg-blue-600/10 opacity-0 group-hover:opacity-100 transition"></div>
+        {/* ============ ORIGINAL: categoryBoxWrap (grid 4 columns) ============ */}
+        <section className="max-w-screen mt-6 lg:mt-8 order-3 animate fade-in-left">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2">
+            {categoryItems.map((item, index) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="categoryBoxWrap rounded-md hover:scale-110 hover:z-10 transition-all duration-300 ease-out"
+              >
+                <div className="relative overflow-hidden root --brand-subtlest w-full rounded px-3 py-2 animatedBg">
+                  <div className="left-0 relative">
+                    <div className="flex flex-col md:gap-2 js-aos md:gap-0 lg:gap-2">
+                      <span className="text-2xl mb-1">{item.icon}</span>
+                      <span className="text-xs font-bold">{item.name}</span>
+                    </div>
+                  </div>
                 </div>
-              ))}
-           </div>
-        </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        {/* ============ ORIGINAL: game providers grid ============ */}
+        <section className="max-w-screen lg:mt-8 order-1">
+          <div className="grid grid-cols-12 gap-4 items-end">
+            <div className="col-span-12 lg:col-span-3">
+              <div className="hidden lg:block">
+                <div className="relative overflow-hidden root --brand-subtlest w-full rounded py-2 px-3">
+                  <div className="left-0 relative">
+                    <div className="flex flex-col md:gap-2 js-aos md:gap-0 lg:gap-0">
+                      <span className="text-2xl mb-1">🎰</span>
+                      <span className="text-xs font-bold">Provider Slots</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-span-12 lg:col-span-9">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2">
+                {providers.map((provider, index) => (
+                  <div
+                    key={provider}
+                    className="rounded-md bg-ds-surface-raised border border-ds-border p-3 hover:scale-105 transition-all duration-300 ease-out group"
+                  >
+                    <div className="rounded overflow-hidden aspect-[4/3] bg-ds-surface-sunken flex items-center justify-center p-4 mb-2">
+                      <span className="text-[10px] text-ds-text-subtle font-bold uppercase text-center">
+                        {provider}
+                      </span>
+                    </div>
+                    <span className="text-[11px] font-bold text-ds-text text-center group-hover:text-ds-text-brand transition">
+                      {provider}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============ ORIGINAL: apkDownloadSection ============ */}
+        <section className="my-10 max-w-screen" id="apkDownloadSection">
+          <div className="root relative">
+            <picture>
+              <source media="(min-width: 640px)" srcSet="https://files.sitestatic.net/assets/imgs/banners/featuring/apk-download-bg-1255x450.webp" width="1255" height="450" />
+              <img
+                src="https://files.sitestatic.net/assets/imgs/banners/featuring/apk-download-mobile-bg-350x728.webp"
+                alt="Download Aplikasi TIKET300"
+                className="w-full h-auto"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </div>
+        </section>
       </main>
 
       <Footer />
