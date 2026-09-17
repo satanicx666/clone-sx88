@@ -1,0 +1,20 @@
+{
+  "colors": {
+    "primary": "#0f1d86",
+    "secondary": "#0049cc",
+    "dark": "#061348",
+    "accent": "#d4b918",
+    "background": "rgb(0, 0, 0)",
+    "text": "rgb(255, 255, 255)"
+  },
+  "fonts": {
+    "primary": "sans-serif",
+    "size": "16px",
+    "weight": "400"
+  },
+  "spacing": {
+    "base": "",
+    "sm": "",
+    "lg": ""
+  }
+}
